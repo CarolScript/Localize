@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administração - Localize</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <section class="admin">
+        <h1>Painel de Administração</h1>
+        <p>Total de pessoas interessadas:</p>
+        <p id="interested-count">Carregando...</p>
+    </section>
+
+    <script>
+        // Busca o número de interessados e exibe na página de administração
+        fetch('/get-interested-users')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('interested-count').textContent = `${data.interestedUsers} pessoas`;
+            })
+            .catch(error => {
+                console.error('Erro ao obter o número de interessados:', error);
+                document.getElementById('interested-count').textContent = 'Erro ao carregar.';
+            });
+    </script>
+</body>
+</html>
